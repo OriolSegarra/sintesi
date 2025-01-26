@@ -1,9 +1,8 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
-    unoptimized: true,
+    domains: ["v0.blob.com", "hebbkx1anhila5yf.public.blob.vercel-storage.com"],
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
+
