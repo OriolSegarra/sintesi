@@ -7,14 +7,14 @@ import { Switch } from "@/components/ui/switch"
 const plans = [
   {
     name: "Standard",
-    price: "795",
+    price: 795,
     description: "Perfect for businesses getting started with Notion",
     features: ["One request at a time", "Renews monthly", "Cancel anytime", "All work belongs to you"],
     href: "https://buy.stripe.com/eVa5le5Dz7mX3f28wz",
   },
   {
     name: "Pro",
-    price: "1395",
+    price: 1395,
     description: "For businesses needing more concurrent requests",
     features: ["Two Requests at a time", "Renews monthly", "Cancel anytime", "All work belongs to you"],
     href: "https://buy.stripe.com/5kA3d6ea5bDdbLybIM",
@@ -37,38 +37,44 @@ export default function Pricing() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className="rounded-lg border border-gray-800 bg-[#1A1B1E] p-6 hover:border-gray-700 transition-colors"
-            >
-              <div className="mb-6">
-                <h3 className="text-xl font-medium mb-2">{plan.name}</h3>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-3xl font-bold">{plan.price}€</span>
-                  <span className="text-sm text-gray-400">per month</span>
-                </div>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex gap-3 text-gray-300">
-                    <Check className="h-5 w-5 flex-shrink-0 text-blue-500" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href={plan.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 transition-colors"
+          {plans.map((plan) => {
+            const discountedPrice = isAnnual ? Math.round(plan.price * 0.8) : plan.price;
+            return (
+              <div
+                key={plan.name}
+                className="rounded-lg border border-gray-800 bg-[#1A1B1E] p-6 hover:border-gray-700 transition-colors"
               >
-                Get started with {plan.name}
-              </a>
-            </div>
-          ))}
+                <div className="mb-6">
+                  <h3 className="text-xl font-medium mb-2">{plan.name}</h3>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold">{discountedPrice}€</span>
+                    <span className="text-sm text-gray-400">per month</span>
+                  </div>
+                  {isAnnual && (
+                    <span className="text-sm text-gray-400 line-through">{plan.price}€</span>
+                  )}
+                </div>
+
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex gap-3 text-gray-300">
+                      <Check className="h-5 w-5 flex-shrink-0 text-blue-500" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-md bg-gray-100 px-4 py-2.5 text-center text-sm font-medium text-gray-900 hover:bg-gray-200 transition-colors"
+                >
+                  Get started with {plan.name}
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
