@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --input: 240, 5.9%, 90%;
+  --background: 0 0 100%;
   --radius: 0.5rem;
   --foreground-rgb: 26, 26, 26;
   --background-rgb: 255, 252, 248;
