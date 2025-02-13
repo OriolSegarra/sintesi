@@ -4,7 +4,7 @@ export default function Manifesto() {
       <div className="max-w-xl mx-auto py-32">
         <div className="space-y-12 text-center text-xl font-medium leading-relaxed">
           <p>
-            Hi, my name is Oriol and as I said, I have also experienced firsthand what it means to scale and grow a
+            Hi, my name is Oriol, an entrepreneur who also experienced firsthand what it means to scale and grow a
             company, with very few resources and very quickly. And it's tough, I know. But we live in the era of no-code
             and AI, and I wondered if there weren't better ways than Excels, Docs and Slides.
           </p>
