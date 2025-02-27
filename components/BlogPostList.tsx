@@ -1,14 +1,6 @@
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-
-interface BlogPost {
-  id: number
-  title: string
-  excerpt: string
-  date: string
-  slug: string
-  category: string
-}
+import { BlogPost } from "@/lib/notion"
 
 export default function BlogPostList({ posts }: { posts: BlogPost[] }) {
   return (
@@ -16,15 +8,17 @@ export default function BlogPostList({ posts }: { posts: BlogPost[] }) {
       {posts.map((post) => (
         <article key={post.id} className="group relative bg-[#1A1A1A] rounded-lg p-6 transition-all hover:bg-[#222222]">
           <div className="flex items-center gap-3 mb-4">
-            <Badge variant="secondary" className="bg-[#2A2A2A] text-gray-200 hover:bg-[#333333]">
-              {post.category}
-            </Badge>
+            {post.category.map((cat, index) => (
+              <Badge 
+                key={index} 
+                variant="secondary" 
+                className="bg-[#2A2A2A] text-gray-200 hover:bg-[#333333]"
+              >
+                {cat}
+              </Badge>
+            ))}
             <time dateTime={post.date} className="text-sm text-gray-400">
-              {new Date(post.date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
+              {post.date}
             </time>
           </div>
           <h2 className="text-2xl font-semibold tracking-tight mb-3 text-white">
